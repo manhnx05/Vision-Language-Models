@@ -1,0 +1,23 @@
+{
+  "graph_type": "area",
+  "title": "Server Load",
+  "x_label": "Time",
+  "y_label": "Load",
+  "data": [
+    {
+      "x": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "y": [
+        20,
+        40,
+        30,
+        50
+      ],
+      "label": "CPU"
+    }
+  ]
+}

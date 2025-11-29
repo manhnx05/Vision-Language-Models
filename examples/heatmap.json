@@ -1,0 +1,28 @@
+{
+  "graph_type": "heatmap",
+  "title": "Correlation Matrix",
+  "x_label": "Var",
+  "y_label": "Var",
+  "data": [
+    {
+      "matrix": [
+        [
+          1,
+          0.5
+        ],
+        [
+          0.5,
+          1
+        ]
+      ],
+      "x_ticks": [
+        "A",
+        "B"
+      ],
+      "y_ticks": [
+        "A",
+        "B"
+      ]
+    }
+  ]
+}

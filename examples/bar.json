@@ -1,0 +1,20 @@
+{
+  "graph_type": "bar",
+  "title": "Fruit Count",
+  "x_label": "Fruit",
+  "y_label": "Count",
+  "data": [
+    {
+      "x": [
+        "Apple",
+        "Banana",
+        "Orange"
+      ],
+      "y": [
+        10,
+        20,
+        15
+      ]
+    }
+  ]
+}

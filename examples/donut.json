@@ -1,0 +1,16 @@
+{
+  "graph_type": "donut",
+  "title": "Storage Usage",
+  "data": [
+    {
+      "labels": [
+        "Used",
+        "Free"
+      ],
+      "values": [
+        70,
+        30
+      ]
+    }
+  ]
+}

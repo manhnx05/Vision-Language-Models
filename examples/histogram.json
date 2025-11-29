@@ -1,0 +1,22 @@
+{
+  "graph_type": "histogram",
+  "title": "Age Distribution",
+  "x_label": "Age",
+  "y_label": "Frequency",
+  "data": [
+    {
+      "values": [
+        22,
+        25,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50,
+        55,
+        60
+      ]
+    }
+  ]
+}

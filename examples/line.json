@@ -1,0 +1,21 @@
+{
+  "graph_type": "line",
+  "title": "Monthly Sales",
+  "x_label": "Month",
+  "y_label": "Revenue",
+  "data": [
+    {
+      "x": [
+        "Jan",
+        "Feb",
+        "Mar"
+      ],
+      "y": [
+        100,
+        150,
+        120
+      ],
+      "label": "2023"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "graph_type": "bubble",
+  "title": "Market Share",
+  "x_label": "GDP",
+  "y_label": "Growth",
+  "data": [
+    {
+      "x": [
+        10,
+        20,
+        30
+      ],
+      "y": [
+        5,
+        10,
+        15
+      ],
+      "s": [
+        100,
+        200,
+        300
+      ],
+      "label": "Countries"
+    }
+  ]
+}

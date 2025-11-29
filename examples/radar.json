@@ -1,0 +1,19 @@
+{
+  "graph_type": "radar",
+  "title": "Skill Set",
+  "data": [
+    {
+      "categories": [
+        "Speed",
+        "Power",
+        "Stamina"
+      ],
+      "values": [
+        80,
+        90,
+        70
+      ],
+      "label": "Player 1"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "graph_type": "pie",
+  "title": "Browser Usage",
+  "data": [
+    {
+      "labels": [
+        "Chrome",
+        "Firefox",
+        "Edge"
+      ],
+      "values": [
+        60,
+        25,
+        15
+      ]
+    }
+  ]
+}

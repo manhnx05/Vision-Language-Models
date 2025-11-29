@@ -1,0 +1,22 @@
+{
+  "graph_type": "step",
+  "title": "Inventory Level",
+  "x_label": "Time",
+  "y_label": "Quantity",
+  "data": [
+    {
+      "x": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "y": [
+        10,
+        8,
+        12,
+        5
+      ]
+    }
+  ]
+}

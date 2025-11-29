@@ -1,0 +1,28 @@
+{
+  "graph_type": "boxplot",
+  "title": "Exam Scores",
+  "x_label": "Class",
+  "y_label": "Score",
+  "data": [
+    {
+      "label": "Class A",
+      "values": [
+        80,
+        85,
+        90,
+        70,
+        95
+      ]
+    },
+    {
+      "label": "Class B",
+      "values": [
+        75,
+        80,
+        85,
+        60,
+        90
+      ]
+    }
+  ]
+}
