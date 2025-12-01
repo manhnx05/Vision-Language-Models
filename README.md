@@ -1,16 +1,3 @@
-# ĐỒ ÁN: HỆ THỐNG TÁI TẠO BIỂU ĐỒ TỪ JSON SỬ DỤNG VLM
-
-## GIỚI THIỆU
-
-Đồ án này nghiên cứu ứng dụng Vision Language Models (VLM) trong việc trích xuất và tái tạo thông tin từ biểu đồ. Hệ thống nhận đầu vào là dữ liệu JSON (được sinh ra từ VLM khi phân tích ảnh biểu đồ), sau đó validate, vẽ lại biểu đồ và xuất báo cáo Word.
-
-### Mục tiêu
-
-1. Nhận dữ liệu JSON từ VLM (khi VLM nhìn vào ảnh biểu đồ)
-2. Kiểm tra và chuẩn hóa dữ liệu JSON theo schema định nghĩa trước
-3. Vẽ lại biểu đồ chính xác từ dữ liệu JSON bằng Python (Matplotlib)
-4. Xuất kết quả biểu đồ vào file Word để làm báo cáo
-
 ## CẤU TRÚC PROJECT
 
 ```
@@ -36,12 +23,6 @@ vlm_graph_project/
 └── tests/                  # Thư mục chứa unit tests
 ```
 
-## YÊU CẦU HỆ THỐNG
-
-- Python phiên bản 3.8 trở lên
-- Hệ điều hành: Windows, Linux hoặc macOS
-- RAM tối thiểu 2GB
-- Dung lượng ổ cứng: 500MB
 
 ## CÀI ĐẶT
 
@@ -66,7 +47,7 @@ pip install -r requirements.txt
 
 ## HƯỚNG DẪN SỬ DỤNG
 
-### Cách 1: Chạy demo với 15 file mẫu có sẵn
+### Chạy demo với 15 file mẫu có sẵn
 
 ```bash
 python main.py
@@ -75,53 +56,6 @@ python main.py
 Chương trình sẽ xử lý 15 file JSON trong thư mục examples/ và tạo ra:
 - 15 file ảnh PNG trong outputs/images/
 - 15 file Word trong outputs/docs/
-
-### Cách 2: Test với file JSON tự tạo
-
-Bước 1: Tạo file JSON (ví dụ: my_chart.json)
-
-```json
-{
-  "graph_type": "bar",
-  "title": "Điểm thi môn AI",
-  "x_label": "Sinh viên",
-  "y_label": "Điểm",
-  "data": [
-    {"x": ["An", "Bình", "Chi"], "y": [8, 9, 7]}
-  ]
-}
-```
-
-Bước 2: Chạy code Python
-
-```python
-from modules.main_pipeline import run_pipeline
-
-result = run_pipeline("my_chart.json")
-
-if result["status"] == "success":
-    print("Thành công!")
-    print("Ảnh:", result['image_path'])
-    print("Word:", result['doc_path'])
-else:
-    print("Lỗi:", result['error'])
-```
-
-### Cách 3: Tạo tài liệu schema cho VLM
-
-```bash
-python tools/generate_schema_docs.py
-```
-
-Lệnh này sẽ tạo file GRAPH_SCHEMAS.md chứa cấu trúc JSON mẫu cho 15 loại biểu đồ. File này dùng để làm prompt cho VLM.
-
-### Cách 4: Xem tất cả biểu đồ dạng web
-
-```bash
-python tools/generate_gallery.py
-```
-
-Sau đó mở file outputs/gallery.html bằng trình duyệt để xem tất cả biểu đồ đã vẽ.
 
 ## CÁC LOẠI BIỂU ĐỒ HỖ TRỢ
 
@@ -145,177 +79,5 @@ Hệ thống hỗ trợ 15 loại biểu đồ:
 | 14 | Biểu đồ thân lá | Stem Plot | examples/stem.json | Tín hiệu rời rạc |
 | 15 | Biểu đồ bậc thang | Step Plot | examples/step.json | Thay đổi đột ngột |
 
-## KIỂM THỬ
-
-Chạy unit tests để kiểm tra hệ thống:
-
-```bash
-python -m unittest tests/test_project.py
-```
-
-Kết quả mong đợi:
-
-```
-test_pipeline_execution ... ok
-test_validator_invalid_type ... ok
-test_validator_missing_field ... ok
-test_validator_valid ... ok
-
-----------------------------------------------------------------------
-Ran 4 tests in 2.367s
-
-OK
-```
-
-## XỬ LÝ LỖI THƯỜNG GẶP
-
-### Lỗi 1: Warning về legend
-
-```
-UserWarning: No artists with labels found to put in legend.
-```
-
-Nguyên nhân: Dữ liệu không có trường "label"
-Giải pháp: Thêm "label": "Tên nhãn" vào data, hoặc bỏ qua (không ảnh hưởng kết quả)
-
-### Lỗi 2: Thiếu trường bắt buộc
-
-```
-Validation failed: Missing required field: 'title'
-```
-
-Nguyên nhân: JSON thiếu trường bắt buộc
-Giải pháp: Xem file GRAPH_SCHEMAS.md để biết các trường bắt buộc
-
-### Lỗi 3: Sai tên loại biểu đồ
-
-```
-Validation failed: Unsupported graph_type: 'barchart'
-```
-
-Nguyên nhân: Tên loại biểu đồ không đúng
-Giải pháp: Dùng đúng tên: bar, line, pie, scatter, histogram, boxplot, area, bubble, barh, donut, heatmap, radar, violin, stem, step
-
-### Lỗi 4: Lỗi cú pháp JSON
-
-```
-Invalid JSON: Expecting ',' delimiter
-```
-
-Nguyên nhân: Thiếu dấu phẩy, ngoặc hoặc dấu ngoặc kép
-Giải pháp: Kiểm tra lại cú pháp JSON
-
-### Lỗi 5: Không tìm thấy file
-
-```
-File not found: path/to/file.json
-```
-
-Nguyên nhân: Đường dẫn file sai
-Giải pháp: Kiểm tra lại đường dẫn, dùng đường dẫn tuyệt đối nếu cần
-
-## MỞ RỘNG HỆ THỐNG
-
-### Thêm loại biểu đồ mới
-
-Bước 1: Mở file modules/graph_schemas.py và thêm schema mới
-
-```python
-GRAPH_SCHEMAS = {
-    # ... các schema có sẵn ...
-    "waterfall": {
-        "required_fields": ["title", "x_label", "y_label", "data"],
-        "data_structure": {
-            "x": "list",
-            "y": "list"
-        },
-        "sample": {
-            "graph_type": "waterfall",
-            "title": "Cash Flow",
-            "x_label": "Category",
-            "y_label": "Amount",
-            "data": [{"x": ["Start", "Income", "Expense"], "y": [100, 50, -30]}]
-        }
-    }
-}
-```
-
-Bước 2: Mở file modules/graph_drawer.py và thêm code vẽ
-
-```python
-elif graph_type == "waterfall":
-    # Code vẽ waterfall chart ở đây
-    pass
-```
-
-Bước 3: Tạo file JSON mẫu và test
-
-### Tùy chỉnh giao diện biểu đồ
-
-Mở file modules/graph_drawer.py và chỉnh sửa:
-
-```python
-# Thay đổi kích thước
-plt.figure(figsize=(12, 8))  # Mặc định là (10, 6)
-
-# Thay đổi màu sắc
-plt.plot(x, y, color='red', linewidth=2)
-
-# Thay đổi font chữ
-plt.title(title, fontsize=16, fontweight='bold')
-```
-
-## KẾ HOẠCH PHÁT TRIỂN
-
-### Giai đoạn 1: Hoàn thành (Hiện tại)
-
-- Đã hoàn thành: Định nghĩa schema cho 15 loại biểu đồ
-- Đã hoàn thành: Module validation
-- Đã hoàn thành: Module vẽ biểu đồ
-- Đã hoàn thành: Module xuất Word
-- Đã hoàn thành: Unit tests
-
-### Giai đoạn 2: Tích hợp VLM (Kế hoạch)
-
-- Tích hợp model Qwen2.5-VL (3B hoặc 7B)
-- Xử lý ảnh biểu đồ đầu vào
-- Tạo prompt cho VLM
-- Xử lý nhiều ảnh cùng lúc
-
-### Giai đoạn 3: Đánh giá và Metrics (Kế hoạch)
-
-- Tạo dataset chuẩn (ảnh + JSON đúng)
-- Tính toán độ chính xác (Accuracy, Precision, Recall)
-- So sánh ảnh gốc và ảnh vẽ lại
-- Phân tích lỗi
-- So sánh các VLM khác nhau
-
-### Giai đoạn 4: Tính năng nâng cao (Tương lai)
-
-- Hỗ trợ biểu đồ 3D
-- Hỗ trợ tiếng Anh
-- Tạo giao diện web
-- Tạo API
-- Deploy lên Colab hoặc HuggingFace
-
-## TÀI LIỆU THAM KHẢO
-
-- GRAPH_SCHEMAS.md: Chi tiết cấu trúc JSON cho từng loại biểu đồ
-- Matplotlib: https://matplotlib.org/stable/
-- Qwen2.5-VL: https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct
-- Python-docx: https://python-docx.readthedocs.io/
-
-## LƯU Ý QUAN TRỌNG
-
-### Về code
-
-- File modules/graph_schemas.py là file quan trọng nhất, chứa định nghĩa schema cho tất cả loại biểu đồ
-- File modules/json_validator.py giúp lọc bỏ dữ liệu sai từ VLM
-- Luôn validate JSON trước khi vẽ biểu đồ
-- Sử dụng file GRAPH_SCHEMAS.md làm prompt cho VLM
 
 
-
-
-
-Năm học: 2024-2025
